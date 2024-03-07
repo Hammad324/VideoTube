@@ -1,5 +1,37 @@
-// import mongoose, { mongo } from "mongoose";
-// import { DB_NAME } from "./constants"; // importing DB_NAME
+ import dotenv from 'dotenv';
+import connectDB from "./db/index.js";
+
+dotenv.config({ // configuring dotenv after import syntax.
+    path: '/.env'
+})
+
+connectDB();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// require('dotenv').config({path: './env'}) // isse bhi kam hojaeyga bas code ki consistency ke liye import mien convert kardo.
 
 // 2 approaches hoti hain db ko connect karne ki
 // => index.js mein hi iife ya function bnake execute kardein.
@@ -28,4 +60,3 @@
 } )(); // iife executed
 */
 // async/await is liye use karte hian kiun ke kisi bhiu db ke connect hone mien time lagta hai or agar hum aisa nhi karein ge to wohi promise <Pending> wali state mein chale jayenge.
-

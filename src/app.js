@@ -16,9 +16,15 @@ app.use(express.urlencoded({extended: true, limit: "16kb"})) // url encoding
 app.use(express.static("public")) // for saving imgaes or favicons.
 app.use(cookieParser()) // for parsing cookies into user's device securely
 
+// routes 
+
+import userRouter from "./routes/user.routes.js";
 
 
+// routes declaration
 
+app.use("/api/v1/users", userRouter)
 
+// http://localhost:3000/api/v1/users/register
 
 export { app }

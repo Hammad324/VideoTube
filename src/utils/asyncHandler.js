@@ -19,7 +19,9 @@
 
 const asyncHandler = (requestHandler) => {
     return (req, res, next) => {
-        Promise.resolve(requestHandler(req, res, next)).reject((err) => next(err))
+        Promise
+        .resolve(requestHandler(req, res, next))
+        .catch((err) => next(err)) // reject likh hua tha mein ne yhan isi liye reject is not a function ka error arha tha
     }
 }
 

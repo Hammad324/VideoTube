@@ -6,8 +6,9 @@ import { ApiResponse } from "../utils/ApiResponse.js"
 
 const registerUser = asyncHandler(async (req, res) => {
 
-    const { fullName, email, username, password } = req.body
+    const { fullName, email, username, password } = req.body // we destructured the object to get the values.
     // console.log("email: ", email)
+    // console.log(req.body) // for study purposes.
 
     // if(fullName === "") {
     //     throw new ApiError(400, "full name is required")
@@ -30,15 +31,21 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     const avatarLocalPath = req.files?.avatar[0]?.path;
-    //console.log(avatarLocalPath)
-    const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    // console.log(req.files) // for study purposes.
+    
+
+    // const coverImageLocalPath = req.files?.coverImage[0]?.path; // It uploads it correctly if the coverimage is present it prodes error for beiong undefined. There fore we further checked it in the next written lines of code.
+
+    let coverImageLocalPath;
+    if (req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0) {
+        coverImageLocalPath = req.files.coverImage[0].path
+    } // this can be done for avatar local path as well
 
     if (!avatarLocalPath) {
         throw new ApiError(400, "Avatar is a required field.")
     }
 
     const avatar = await uploadFileOnCloudinary(avatarLocalPath) // because yhan pe time lagega, phir agey barhe ga 
-    console.log(avatar)
     const coverImage = await uploadFileOnCloudinary(coverImageLocalPath)
 
 
@@ -57,7 +64,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     const createdUser = await User.findById(user._id).select(
         "-password -refreshToken"
-    )
+    ) // removing both of these properties for security purposes 
 
     if (!createdUser) {
         throw new ApiError(500, "Something went wrong while registering the user.")
@@ -71,7 +78,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 export {registerUser}
 
-// user data -> get 
+// user data -> get
 // validate info
 // senstive info should be encrypted
 // check if the user is already logged in: username, email

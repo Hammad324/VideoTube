@@ -9,13 +9,15 @@ cloudinary.config({
 
 const uploadFileOnCloudinary = async (localFilePath) => {
     try {
-        if(!localFilePath) return null
+        if (!localFilePath) return null
         // upload file on cloudinary
         const response = await cloudinary.uploader.upload(localFilePath, {
             resource_type: "auto"
         })
         // if file uploaded successfully
-        console.log('file has been uplaoded successfully on cloudinary.', response.url());
+        //console.log('file has been uplaoded successfully on cloudinary.', response.url); // bug was here. I accidentally wrote response.url() instead of response.url 
+        //console.log(response) // for study purposes.
+        fs.unlinkSync(localFilePath) // synchronously delete hojayegi jab upload hochuki hogi.
         return response;
 
     } catch (error) {

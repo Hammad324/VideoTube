@@ -67,7 +67,7 @@ userSchema.methods.generateAccessToken = function () { // async fun bhi likh sak
         },
         process.env.ACCESS_TOKEN_SECRET,
         {
-            expiersIn: process.env.ACCESS_TOKEN_EXPIRY
+            expiresIn: process.env.ACCESS_TOKEN_EXPIRY
         }
     )
 }
@@ -78,7 +78,7 @@ userSchema.methods.generateRefreshToken = function () {
         },
         process.env.REFRESH_TOKEN_SECRET,
         {
-            expiersIn: process.env.REFRESH_TOKEN_EXPIRY
+            expiresIn: process.env.REFRESH_TOKEN_EXPIRY
         }
     )
 }

@@ -2,14 +2,13 @@ import { User } from "../models/user.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import jwt from "jsonwebtoken"
-import { User } from "../models/user.model.js";
 
 
 export const verifyJWT = asyncHandler(async (req, _, next) => { // res agar khali ho to uski jaga _ likh sakte hain. _ res ki jaga likha hai
     
     try {
 
-        const token = req.cookie?.accessToken || req.header("Authorization")?.replace("Bearer ", "")
+        const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "")
     
         if (!token) {
             throw new ApiError(401, "Unauthorized Request")
@@ -28,7 +27,7 @@ export const verifyJWT = asyncHandler(async (req, _, next) => { // res agar khal
 
     } catch (error) {
 
-        throw new ApiError(401, error?.message || "Invalid Access Token")
+        throw new ApiError(401, error.message || "Invalid Access Token")
         
     }
 

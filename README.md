@@ -4,11 +4,17 @@ The concept is to create a comprehensive video hosting API similar to YouTube. I
 
 **Completed:**
 
-=> Basic setup and settings of the project 
-=> Authentication and Authorization, File handling, and uploading the files, specifically images to Cloudinary.
-=> User Routes, Controllers.
+=> Basic setup and settings of the project
+
+=> Authentication and Authorization, File handling, and uploading 
+the files, specifically images to Cloudinary
+
+=> User Routes, Controllers, Database connection 
 
 **Remaining:**
 
-=> liking, disliking a video (controllers are incomplete, the schema is done),
-=> subscribing, unsubscribing (controllers are incomplete, the schema is done),
+=> liking, disliking a video (controllers are incomplete, the schema is done)
+
+=> subscribing, unsubscribing (controllers are incomplete, the schema is done)
+
+=> tweet, playlist, dashboard, comments (controllers and models are remaining)

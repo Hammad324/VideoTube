@@ -1,75 +1,13 @@
-import dotenv from 'dotenv';
-import connectDB from "./db/index.js";
-import { app } from './app.js';
+import dotenv from "dotenv"
+import connectDB from "./db/index.js"
+import { app } from "./app.js"
 
-dotenv.config({ // configuring dotenv after import syntax.
-    path: './.env'
-})
+dotenv.config({path: "./.env"})
 
 connectDB()
-.then(() => {
+.then( () => {
     app.listen(process.env.PORT || 8000, () => {
-        console.log(`⚙️  Server is running at port : ${process.env.PORT}`)
+        console.log(`Server is running at port : ${process.env.PORT}`)
     })
-    // app.on(error, (err) => {
-    //     console.log("Error: ", err);
-    //     throw err
-    // })
 })
-.catch((err => {
-    console.log(`Mongo DB connection issue.`, err)
-}))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// require('dotenv').config({path: './env'}) // isse bhi kam hojaeyga bas code ki consistency ke liye import mien convert kardo.
-
-// 2 approaches hoti hain db ko connect karne ki
-// => index.js mein hi iife ya function bnake execute kardein.
-// => ya phir src/db mein index.js mein ye sab kam karke main file mein import karke execute karvadein.
-
-// import express from "express" // initializing app
-// const app = express()
-
-// using an iife with async/await and try/catch for better approach.
-/* ;( async () => { 
-    try {
-        await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`) // connecting the database.
-        app.on("error!", (error) => {
-            console.log("Error: ", error)
-            throw error
-        })
-
-        app.listen(process.env.PORT, () => {
-            console.log(`App is listenening on port ${process.env.PORT}`)
-        }) // app is running on this port.
-
-    } catch (error) {
-        console.error(`Error: `, error);
-        throw error
-    }
-} )(); // iife executed
-*/
-// async/await is liye use karte hian kiun ke kisi bhiu db ke connect hone mien time lagta hai or agar hum aisa nhi karein ge to wohi promise <Pending> wali state mein chale jayenge.
+.catch( (err) => {console.log("MongoDB Connection Failed !!!!", err);})
